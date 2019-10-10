@@ -14,8 +14,17 @@ python3 cronparser_test.py
 ```
 
 ## Usage
+
+### CLI
 Pass the cron expression as parameter to the cli.py script, and make sure to escape the special characters
 
 ```bash
 python3 cli.py \*/15 0 1,15 \* 1-5 /usr/bin/find
+```
+
+### Python
+
+```
+from cronparser import Parser
+result = Parser().parse(expression)
 ```

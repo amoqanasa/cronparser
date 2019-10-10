@@ -1,7 +1,17 @@
 language: python
+
 python:
   - "3.7"
+
 install:
   - pip3 install -r requirements.txt
+  - pip3 install --user codecov
+
 script:
   - python3 cronparser_test.py
+
+env:
+  - CODECOV_TOKEN=7e8ea606-cfbe-4528-b1ca-0da9ba7c6e27
+
+after_success:
+  - codecov

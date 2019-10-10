@@ -94,7 +94,7 @@ class DefaultRule(Rule):
 class Parser(object):
     rules = [LiteralRule(), WildCardRule(), StepRule(), RangeRule(), ListRule(), DefaultRule()]
 
-    chunks = [
+    tokens_properties = [
         {'label': 'minute', 'values': [minute for minute in range(0, 60)]},
         {'label': 'hour', 'values': [hour for hour in range(0, 24)]},
         {'label': 'day of month', 'values': [day for day in range(1, 32)]},
@@ -115,8 +115,8 @@ class Parser(object):
         tokens = tokens[:5]
 
         for index, token in enumerate(tokens):
-            label = self.chunks[index]['label']
-            values = self.chunks[index]['values']
+            label = self.tokens_properties[index]['label']
+            values = self.tokens_properties[index]['values']
             rule = next(filter(lambda rule: rule.match(token), self.rules))
             entry[label] = rule.parse(token, values)
         return entry

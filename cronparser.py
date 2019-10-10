@@ -103,11 +103,12 @@ class Parser(object):
     ]
 
     def parse(self, expression) -> dict:
-        tokens = expression.split(" ")
+        if expression == None:
+            raise RuntimeError("expression cannot be None!")
+
+        tokens = re.compile("\s+").split(expression.strip())
         result = {}
         entry = {}
-
-        entry["expression"] = expression
 
         if len(tokens) < 6:
             raise RuntimeError("invalid expression '{}' it needs to have at least 6 space separated values".format(expression))

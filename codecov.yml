@@ -1,0 +1,3 @@
+ignore:
+  - "cronparser_test.py"
+  - "cli.py"

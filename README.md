@@ -5,6 +5,8 @@ Cron Expression Parser Written In Python
 
 ## Installation
 ```bash
+git clone https://github.com/abugnais/cronparser.git
+cd cronparser
 pip3 install -r requirements.txt
 ```
 

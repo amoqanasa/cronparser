@@ -61,5 +61,23 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(result['month'], [1], "should run in january")
         self.assertEqual(result['command'], '/test/command')
 
+    def test_parse_monday_tuesday(self):
+        expression = '0 0 * * 1,2 /test/command'
+        result = self.parser.parse(expression)
+
+        self.assertEqual(result['day of week'], [1, 2], "should run on day 1 and 2 of the week")
+        self.assertEqual(result['command'], '/test/command')
+
+    def test_parse_every_five_minutes(self):
+        expression = '*/5 * * * * /test/command'
+        result = self.parser.parse(expression)
+
+        self.assertEqual(result['minute'], [minute for minute in range(0, 60, 5)], "should run every five minutes")
+        self.assertEqual(result['command'], '/test/command')
+
+    def test_missing_command(self):
+        expression = '0 0 * * 1,2'
+        result =  self.assertRaises(RuntimeError, self.parser.parse, expression)
+
 if __name__ == '__main__':
     unittest.main()

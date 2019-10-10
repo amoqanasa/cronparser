@@ -102,7 +102,7 @@ class Parser(object):
         {'label': 'day of week', 'values': [day for day in range(0, 7)]}
     ]
 
-    def parse(self, expression) -> dict:
+    def parse(self, expression:str) -> dict:
         if expression == None:
             raise RuntimeError("expression cannot be None!")
 

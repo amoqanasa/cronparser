@@ -14,6 +14,15 @@ def pretty_print(entry):
     print("day of week  {}".format(print_numlist(entry['day of week'])))
     print("command      {}".format(entry['command']))
 
+if len(sys.argv) < 2:
+    print("you need to pass a crontab expression as a first parameter")
+    exit(1)
+
 args = sys.argv[1:]
-entry = Parser().parse(" ".join(args))
-pretty_print(entry)
+expression = " ".join(args)
+
+try:
+    entry = Parser().parse(expression)
+    pretty_print(entry)
+except RuntimeError as e:
+    print("unable to parse the expression {} an error was thrown by the parser\n{}".format(expression, e))

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/abugnais/cronparser.svg?branch=master)](https://travis-ci.org/abugnais/cronparser)
+
 Cron Expression Parser Written In Python
 ========================================
 

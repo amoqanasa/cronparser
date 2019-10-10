@@ -2,18 +2,12 @@ import sys
 from cronparser import Parser
 
 def pretty_print(entry):
-    keys = entry.params.keys()
-    longest_key = max(keys, key=len)
-
-    print(entry.expression)
-
-    for key in entry:
-        space_padding = (len(longest_key) - len(key) + 5) * " "
-        values =  ' '.join(str(val) for val in entry[key])
-        print("{}{}{}".format(key, space_padding, values))
-
-    print("{}{}{}".format("command", (len(longest_key) - len("command") + 5) * " ", entry['command']))
-    print("\n")
+    print("minute       {}".format(entry['minute']))
+    print("hour         {}".format(entry['hour']))
+    print("day of month {}".format(entry['day of month']))
+    print("day of week  {}".format(entry['day of week']))
+    print("month        {}".format(entry['month']))
+    print("command      {}".format(entry['command']))
 
 args = sys.argv[1:]
 entry = Parser().parse(" ".join(args))

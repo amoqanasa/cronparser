@@ -107,7 +107,7 @@ class Parser(object):
         result = {}
         entry = {}
 
-        entry['expression'] = expression
+        entry["expression"] = expression
 
         if len(tokens) < 6:
             raise RuntimeError("invalid expression '{}' it needs to have at least 6 space separated values".format(expression))

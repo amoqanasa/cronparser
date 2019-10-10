@@ -28,5 +28,6 @@ python3 cli.py \*/15 0 1,15 \* 1-5 /usr/bin/find
 
 ```python
 from cronparser import Parser
+expression = "*/15 0 1,15 * 1-5 /usr/bin/find"
 result = Parser().parse(expression)
 ```

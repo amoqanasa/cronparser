@@ -8,7 +8,7 @@ install:
   - pip3 install codecov
 
 script:
-  - coverage python3 cronparser_test.py
+  - coverage run cronparser_test.py
 
 env:
   - CODECOV_TOKEN=7e8ea606-cfbe-4528-b1ca-0da9ba7c6e27

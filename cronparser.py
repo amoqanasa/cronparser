@@ -2,11 +2,6 @@
 import re
 from typing import List
 
-class CronEntry(object):
-    expression:str = ""
-    params:dict = {}
-    command:str = ""
-
 class Rule(object):
     def match(self, expression:str) -> bool:
         raise RuntimeError('match is not implemented')
@@ -107,23 +102,23 @@ class Parser(object):
         {'label': 'day of week', 'values': [day for day in range(0, 7)]}
     ]
 
-    def parse(self, expression) -> CronEntry:
+    def parse(self, expression) -> dict:
         tokens = expression.split(" ")
         result = {}
-        entry = CronEntry()
+        entry = {}
 
-        entry.expression = expression
+        entry['expression'] = expression
 
         if len(tokens) < 6:
             raise RuntimeError("invalid expression '{}' it needs to have at least 6 space separated values".format(expression))
 
-        entry.command = " ".join(tokens[5:])
+        entry['command'] = " ".join(tokens[5:])
         tokens = tokens[:5]
 
         for index, token in enumerate(tokens):
             label = self.chunks[index]['label']
             values = self.chunks[index]['values']
             rule = next(filter(lambda rule: rule.match(token), self.rules))
-            entry.params[label] = rule.parse(token, values)
+            entry[label] = rule.parse(token, values)
 
         return entry

@@ -24,7 +24,7 @@ python3 cli.py \*/15 0 1,15 \* 1-5 /usr/bin/find
 
 ### Python
 
-```
+```python
 from cronparser import Parser
 result = Parser().parse(expression)
 ```

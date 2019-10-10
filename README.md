@@ -3,7 +3,7 @@ Cron Expression Parser Written In Python
 
 ## Installation
 ```bash
-Yet To Be Documented
+pip3 install -r requirements.txt
 ```
 
 ## Run tests

@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/abugnais/cronparser.svg?branch=master)](https://travis-ci.org/abugnais/cronparser)
+[![Build Status](https://travis-ci.org/abugnais/cronparser.svg?branch=master)](https://travis-ci.org/abugnais/cronparser) 
+[![codecov](https://codecov.io/gh/abugnais/cronparser/branch/master/graph/badge.svg)](https://codecov.io/gh/abugnais/cronparser)
+
 
 Cron Expression Parser Written In Python
 ========================================

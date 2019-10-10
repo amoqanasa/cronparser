@@ -35,10 +35,10 @@ class StepRule(Rule):
         return [val for val in range(base, values[-1], step)]
 
 class ListRule(Rule):
-    list_regex = '^\d+(,\d+)+$'
+    regex = '^\d+(,\d+)+$'
 
     def match(self, expression:str) -> bool:
-        return re.match(self.list_regex, expression) != None
+        return re.match(self.regex, expression) != None
 
     def parse(self, expression:str, values:List[int]) -> List[int]:
         params = [int(param) for param in expression.split(',')]
@@ -55,10 +55,10 @@ class WildCardRule(Rule):
         return values
 
 class LiteralRule(Rule):
-    value_regex = '^\d*$'
+    regex = '^\d*$'
 
     def match(self, expression:str) -> bool:
-        return re.match(self.value_regex, expression) != None
+        return re.match(self.regex, expression) != None
 
     def parse(self, expression:str, values:List[int]) -> List[int]:
         value = int(expression)
@@ -90,7 +90,6 @@ class RangeRule(Rule):
         return [v for v in range(start, end + 1, step)]
 
 class DefaultRule(Rule):
-
     def match(self, expression):
         raise RuntimeError('none of the rules were matched for expression {}'.format(expression))
 

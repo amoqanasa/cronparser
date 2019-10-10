@@ -2,7 +2,9 @@ Cron Expression Parser Written In Python
 ========================================
 
 ## Installation
+```bash
 Yet To Be Documented
+```
 
 ## Run tests
 ```bash

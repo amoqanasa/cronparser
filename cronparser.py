@@ -107,13 +107,11 @@ class Parser(object):
             raise RuntimeError("expression cannot be None!")
 
         tokens = re.compile("\s+").split(expression.strip())
-        result = {}
-        entry = {}
 
         if len(tokens) < 6:
             raise RuntimeError("invalid expression '{}' it needs to have at least 6 space separated values".format(expression))
 
-        entry['command'] = " ".join(tokens[5:])
+        entry = {'command': " ".join(tokens[5:])}
         tokens = tokens[:5]
 
         for index, token in enumerate(tokens):
@@ -121,5 +119,4 @@ class Parser(object):
             values = self.chunks[index]['values']
             rule = next(filter(lambda rule: rule.match(token), self.rules))
             entry[label] = rule.parse(token, values)
-
         return entry

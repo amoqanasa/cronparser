@@ -125,5 +125,5 @@ class Parser(object):
                 rule = next(filter(lambda rule: rule.match(token), self.rules))
                 entry[label] = rule.parse(token, values)
             except RuntimeError as e:
-                raise RuntimeError('error while parsing `{}`, {}'.format(label, e))
+                raise RuntimeError('error while parsing `{}` with value `{}` and position `{}`, {}'.format(label, token, index, e))
         return entry

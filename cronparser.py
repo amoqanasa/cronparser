@@ -120,6 +120,10 @@ class Parser(object):
         for index, token in enumerate(tokens):
             label = self.tokens_properties[index]['label']
             values = self.tokens_properties[index]['values']
-            rule = next(filter(lambda rule: rule.match(token), self.rules))
-            entry[label] = rule.parse(token, values)
+
+            try:
+                rule = next(filter(lambda rule: rule.match(token), self.rules))
+                entry[label] = rule.parse(token, values)
+            except RuntimeError as e:
+                raise RuntimeError('error while parsing `{}`, {}'.format(label, e))
         return entry

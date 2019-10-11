@@ -33,3 +33,14 @@ from cronparser import Parser
 expression = "*/15 0 1,15 * 1-5 /usr/bin/find"
 result = Parser().parse(expression)
 ```
+
+## Known issue/Corner case
+In the case where the step expression combined with either a literal or a range of values like this example
+```
+* * * * 1-5/20 /usr/bin/find
+```
+Or this example
+```
+* * * * */20 /usr/bin/find
+```
+Note that 20 is larger than the maximum value for the day of the week which is 6, although this expression is valid in most crontab implementations, it is quiet tricky to represent as a list of values, therefor I decided not to implement it, until I figure out a solid and predictable solution for it

@@ -112,6 +112,11 @@ class ParserTest(unittest.TestCase):
     def test_month_range_large_step(self):
         expression = '1-10 0 * 1-5/13 1 /test/command'
         self.assertRaises(RuntimeError, self.parser.parse, expression)
+    
+    def test_month_large_step(self):
+        expression = '1-10 0 * 1/25 1 /test/command'
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
+
 
     def test_month_range_zero_step(self):
         expression = '1-10 0 * 1-5/0 1 /test/command'

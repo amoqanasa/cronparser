@@ -39,7 +39,7 @@ class ListRule(Rule):
         params = [int(param) for param in expression.split(',')]
         for param in params:
             if param not in values:
-                raise Exception('invalid list values')
+                raise RuntimeError('invalid list values')
         return sorted(params)
 
 class WildCardRule(Rule):

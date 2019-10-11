@@ -105,5 +105,14 @@ class ParserTest(unittest.TestCase):
         expression = '0 0 * * 9 /test/command'
         result = self.assertRaises(RuntimeError, self.parser.parse, expression)
 
+    def test_norule_matched(self):
+        expression = '0 0 * * sun-mon /test/command'
+        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+
+    def test_invalid_list(self):
+        expression = '0 0 * * 1,4,8 /test/command'
+        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+
+
 if __name__ == '__main__':
     unittest.main()

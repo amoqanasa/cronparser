@@ -43,5 +43,6 @@ Or this example
 ```
 * * * * */20 /usr/bin/find
 ```
-Note that 20 is larger than the maximum value for the day of the week which is 6, although this expression is valid in most crontab implementations, it is quiet tricky to represent as a list of values, therefor I decided not to implement it, until I figure out a solid and predictable solution for such cases.
-For now the current behaviour for such cases is represented in test cases ```test_month_range_large_step``` and ```test_month_large_step```
+Note that 20 is larger than the maximum value for the day of the week which is 6, although this expression is valid in most crontab implementations, it is quiet tricky to represent as a list of values, therefore I decided not to raise and error in such cases, until I figure out a solid and predictable solution for such cases.
+
+For now the current behaviour for such cases is represented in test cases ```test_month_range_large_step``` and ```test_month_large_step```.

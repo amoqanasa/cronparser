@@ -74,8 +74,9 @@ class RangeRule(Rule):
         step = int(params[2]) if len(params) == 3 else 1
 
         if step > values[-1]:
-            step = step % values[-1]
-
+            raise RuntimeError('invalid expression, the step cannot be larger than the maximum value {}'.format(step))
+        if step == 0:
+            raise RuntimeError('invalid expression, the step cannot be zero')
         if start > end:
             raise RuntimeError('invalid expression beginning of the range {} is greater than the end of the range {}'.format(start, end))
         if start < values[0]:

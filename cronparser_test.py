@@ -105,6 +105,18 @@ class ParserTest(unittest.TestCase):
         expression = '0 0 * * 9 /test/command'
         self.assertRaises(RuntimeError, self.parser.parse, expression)
 
+    def test_invalid_minute_range(self):
+        expression = '15-10 0 * * 1 /test/command'
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
+
+    def test_month_range_large_step(self):
+        expression = '1-10 0 * 1-5/13 1 /test/command'
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
+
+    def test_month_range_zero_step(self):
+        expression = '1-10 0 * 1-5/0 1 /test/command'
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
+
     def test_norule_matched(self):
         expression = '0 0 * * sun-mon /test/command'
         self.assertRaises(RuntimeError, self.parser.parse, expression)

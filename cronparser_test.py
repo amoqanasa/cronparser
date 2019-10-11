@@ -91,27 +91,27 @@ class ParserTest(unittest.TestCase):
 
     def test_missing_command(self):
         expression = '0 0 * * 1,2'
-        result =  self.assertRaises(RuntimeError, self.parser.parse, expression)
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
 
     def test_none_expression(self):
         expression = None
-        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
 
     def test_invalid_day_range(self):
         expression = '0 0 * * 1-15 /test/command'
-        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
 
     def test_invalid_literal_value(self):
         expression = '0 0 * * 9 /test/command'
-        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
 
     def test_norule_matched(self):
         expression = '0 0 * * sun-mon /test/command'
-        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
 
     def test_invalid_list(self):
         expression = '0 0 * * 1,4,8 /test/command'
-        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+        self.assertRaises(RuntimeError, self.parser.parse, expression)
 
 
 if __name__ == '__main__':

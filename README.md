@@ -11,6 +11,7 @@ git clone https://github.com/abugnais/cronparser.git
 cd cronparser
 pip3 install -r requirements.txt
 ```
+**Note**: This was tested against python versions 3.4, 3.5, 3.6, 3.7
 
 ## Run tests
 ```bash

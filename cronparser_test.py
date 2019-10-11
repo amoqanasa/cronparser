@@ -49,7 +49,6 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(result['month'], [month for month in range(1, 13)])
         self.assertEqual(result['command'], '/test/command')
 
-
     def test_parse_yearly(self):
         expression = '0 0 1 1 * /test/command'
         result = self.parser.parse(expression)
@@ -117,7 +116,6 @@ class ParserTest(unittest.TestCase):
         expression = '1-10 0 * 1/25 1 /test/command'
         self.assertRaises(RuntimeError, self.parser.parse, expression)
 
-
     def test_month_range_zero_step(self):
         expression = '1-10 0 * 1-5/0 1 /test/command'
         self.assertRaises(RuntimeError, self.parser.parse, expression)
@@ -129,7 +127,6 @@ class ParserTest(unittest.TestCase):
     def test_invalid_list(self):
         expression = '0 0 * * 1,4,8 /test/command'
         self.assertRaises(RuntimeError, self.parser.parse, expression)
-
 
 if __name__ == '__main__':
     unittest.main()

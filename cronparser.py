@@ -10,10 +10,10 @@ class Rule(object):
         raise RuntimeError('parse is not implemented')
 
 class StepRule(Rule):
-    step_regex = '^(\d*|\*)\/\d*$'
+    regex = '^(\d*|\*)\/\d*$'
 
     def match(self, expression:str) -> bool:
-        return re.match(self.step_regex, expression) != None
+        return re.match(self.regex, expression) != None
 
     def parse(self, expression:str, values:List[int]) -> List[int]:
         params = expression.split('/')

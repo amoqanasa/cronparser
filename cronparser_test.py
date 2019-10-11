@@ -97,5 +97,9 @@ class ParserTest(unittest.TestCase):
         expression = None
         result = self.assertRaises(RuntimeError, self.parser.parse, expression)
 
+    def test_invalid_day_range(self):
+        expression = '0 0 * * 1-15 /test/command'
+        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+
 if __name__ == '__main__':
     unittest.main()

@@ -93,5 +93,9 @@ class ParserTest(unittest.TestCase):
         expression = '0 0 * * 1,2'
         result =  self.assertRaises(RuntimeError, self.parser.parse, expression)
 
+    def test_none_expression(self):
+        expression = None
+        result = self.assertRaises(RuntimeError, self.parser.parse, expression)
+
 if __name__ == '__main__':
     unittest.main()

@@ -26,7 +26,9 @@ class StepRule(Rule):
             base = int(base)
 
         if step > values[-1]:
-            step = step % values[-1]
+            raise RuntimeError('invalid expression, the step cannot be larger than the maximum value {}'.format(step))
+        if step == 0:
+            raise RuntimeError('invalid expression, the step cannot be zero')
         return [val for val in range(base, values[-1], step)]
 
 class ListRule(Rule):

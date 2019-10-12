@@ -1,13 +1,16 @@
 
 import re
 from typing import List
+from abc import ABC, abstractmethod
 
-class Rule(object):
+class Rule(ABC):
+    @abstractmethod
     def match(self, expression:str) -> bool:
-        raise RuntimeError('match is not implemented')
+        return
 
+    @abstractmethod
     def parse(self, expression:str, values:List[int]) -> List[int]:
-        raise RuntimeError('parse is not implemented')
+        return
 
 class StepRule(Rule):
     regex = '^(\d*|\*)\/\d*$'

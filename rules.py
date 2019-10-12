@@ -3,7 +3,7 @@ import re
 from typing import List
 from abc import ABC, abstractmethod
 
-class Rule(ABC):
+class BaseRule(ABC):
     @abstractmethod
     def match(self, expression:str) -> bool:
         return
@@ -12,7 +12,7 @@ class Rule(ABC):
     def parse(self, expression:str, values:List[int]) -> List[int]:
         return
 
-class StepRule(Rule):
+class StepRule(BaseRule):
     regex = '^(\d*|\*)\/\d*$'
 
     def match(self, expression:str) -> bool:
@@ -34,7 +34,7 @@ class StepRule(Rule):
             raise RuntimeError('invalid expression, the step cannot be zero')
         return [val for val in range(base, values[-1], step)]
 
-class ListRule(Rule):
+class ListRule(BaseRule):
     regex = '^\d+(,\d+)+$'
 
     def match(self, expression:str) -> bool:
@@ -47,14 +47,14 @@ class ListRule(Rule):
                 raise RuntimeError('invalid list values')
         return sorted(params)
 
-class WildCardRule(Rule):
+class WildCardRule(BaseRule):
     def match(self, expression:str) -> bool:
         return expression == '*'
 
     def parse(self, expression:str, values:List[int]) -> List[int]:
         return values
 
-class LiteralRule(Rule):
+class LiteralRule(BaseRule):
     regex = '^\d*$'
 
     def match(self, expression:str) -> bool:
@@ -66,7 +66,7 @@ class LiteralRule(Rule):
             raise RuntimeError("invalid value {} not included in {}".format(str(value), values))
         return [value]
 
-class RangeRule(Rule):
+class RangeRule(BaseRule):
     regex = '^\d*\-\d*(\/\d*)?$'
 
     def match(self, expression:str) -> bool:
@@ -90,7 +90,7 @@ class RangeRule(Rule):
             raise RuntimeError('invalid expression end of the range {} is greater than the maximum allowed value {}'.format(end, values[-1]))
         return [v for v in range(start, end + 1, step)]
 
-class DefaultRule(Rule):
+class DefaultRule(BaseRule):
     def match(self, expression):
         raise RuntimeError('none of the rules were matched for expression {}'.format(expression))
 

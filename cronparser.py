@@ -1,4 +1,4 @@
-from rules import LiteralRule, WildCardRule, StepRule, RangeRule, ListRule, DefaultRule
+from rules import *
 import re
 
 class Parser(object):

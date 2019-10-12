@@ -6,11 +6,11 @@ from abc import ABC, abstractmethod
 class BaseRule(ABC):
     @abstractmethod
     def match(self, expression:str) -> bool:
-        return
+        pass
 
     @abstractmethod
     def parse(self, expression:str, values:List[int]) -> List[int]:
-        return
+        pass
 
 class StepRule(BaseRule):
     regex = '^(\d*|\*)\/\d*$'

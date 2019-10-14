@@ -112,8 +112,8 @@ class ParserTest(unittest.TestCase):
         expression = '15/0 0 * * 1 /test/command'
         self.assertRaises(RuntimeError, self.parser.parse, expression)
 
-    def test_invalid_min_range(self):
-        expression = '15 0 * 0 * /test/command'
+    def test_invalid_list_element(self):
+        expression = '15 0 * 0,1 * /test/command'
         self.assertRaises(RuntimeError, self.parser.parse, expression)
 
     def test_month_range_large_step(self):

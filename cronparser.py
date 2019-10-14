@@ -5,11 +5,11 @@ class Parser(object):
     rules = [LiteralRule(), WildCardRule(), StepRule(), RangeRule(), ListRule(), DefaultRule()]
 
     tokens_properties = [
-        {'label': 'minute', 'values': [minute for minute in range(0, 60)]},
-        {'label': 'hour', 'values': [hour for hour in range(0, 24)]},
-        {'label': 'day of month', 'values': [day for day in range(1, 32)]},
-        {'label': 'month', 'values': [month for month in range(1, 13)]},
-        {'label': 'day of week', 'values': [day for day in range(0, 7)]}
+        {'label': 'minute', 'min': 0, 'max': 59},
+        {'label': 'hour', 'min': 0, 'max': 23},
+        {'label': 'day of month', 'min':1, 'max': 31},
+        {'label': 'month', 'min': 1, 'max': 12},
+        {'label': 'day of week', 'min': 0, 'max': 6}
     ]
 
     def parse(self, expression:str) -> dict:
@@ -26,11 +26,12 @@ class Parser(object):
 
         for index, token in enumerate(tokens):
             label = self.tokens_properties[index]['label']
-            values = self.tokens_properties[index]['values']
+            minimum = self.tokens_properties[index]['min']
+            maximum = self.tokens_properties[index]['max']
 
             try:
                 rule = next(filter(lambda rule: rule.match(token), self.rules))
-                entry[label] = rule.parse(token, values)
+                entry[label] = rule.parse(token, minimum, maximum)
             except RuntimeError as e:
                 raise RuntimeError('error while parsing `{}` with value `{}` and position `{}`, {}'.format(label, token, index, e))
         return entry

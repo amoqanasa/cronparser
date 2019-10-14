@@ -22,9 +22,9 @@ Test expressions were generated using https://crontab.guru
 ## Usage
 
 ### CLI
-Pass the cron expression as parameter to the cli.py script, and make sure to escape the special characters
+Pass the cron expression as parameter to the cli.py script, and make sure surround the expression parameter with quotes
 ```bash
-python3 cli.py \*/15 0 1,15 \* 1-5 /usr/bin/find
+python3 cli.py "*/15 0 1,15 * 1-5 /usr/bin/find"
 ```
 
 ### Python
